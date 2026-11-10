@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       useMaterial3: true),
       darkTheme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
       useMaterial3: true),
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.dark,
       home: MyProfilePage(),
     );
   }
@@ -84,9 +84,81 @@ class MyProfilePage extends StatelessWidget {
                 color: Colors.red
               ),
               ),
+              
+              SizedBox(height: 40),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text("Kontak",style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red,
+                ),
+                ),
+              ),
+
+              Card(child: Column(
+                children: [
+                  InfoTile(
+                    icon : Icons.email,
+                    label : "Email",
+                    value : "firloabdh@gmail.com"
+                  ),
+                  InfoTile(
+                    icon : Icons.phone,
+                    label : "No.Telp",
+                    value : "0895360888872"
+                  ),
+                  InfoTile(
+                    icon : Icons.class_,
+                    label : "Kelas",
+                    value : "TI 24 SE 1"
+                  ),
+                  InfoTile(
+                    icon : Icons.work,
+                    label : "GitHub",
+                    value : "firloabdh-dot"
+                  )
+                ],
+              ),
+              ),
+              SizedBox(height: 40),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text("Hobi",style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red,
+                ),),
+              ),
+
+              SizedBox(height: 20),
+
+              Card(child: Column(
+                children: [
+                  InfoTile(
+                    icon : Icons.book,
+                    label : "Hobi",
+                    value : "Baca Buku"
+                  ),
+                  InfoTile(
+                    icon : Icons.movie,
+                    label : "Hobi",
+                    value : "Menonton Film"
+                  ),
+                  InfoTile(
+                    icon : Icons.bike_scooter,
+                    label : "Hobi",
+                    value : "Bersepeda"
+                  ),
+                  
+                ],
+              ),
+              )
+
             ],
           ),
         ),
+        
         ),
       ),
       floatingActionButton: FloatingActionButton(onPressed: (){
@@ -97,6 +169,27 @@ class MyProfilePage extends StatelessWidget {
       tooltip: "Tambah Data",
       child: Icon(Icons.add),
       ),
+    );
+  }
+}
+
+class InfoTile extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final String value;
+
+  const InfoTile({
+    required this.icon,
+    required this.label,
+    required this.value,
+    super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Icon(icon),
+      title: Text(label),
+      subtitle: Text(value),
     );
   }
 }

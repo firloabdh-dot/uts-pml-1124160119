@@ -29,6 +29,74 @@ class MyProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("PROFILE"),
+        backgroundColor: Colors.red,
+        foregroundColor: Colors.white,
+        actions: [
+          IconButton(onPressed: (){
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text("Fitur Belum ada"))
+            );
+          },
+          tooltip: "Search",
+          icon: Icon(Icons.search),
+          ),
+
+          IconButton(onPressed: (){
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text("Fitur Menu"))
+            );
+          },
+          tooltip: "Menu",
+          icon: Icon(Icons.menu),
+          )
+        ],
+      ),
+
+      body: SingleChildScrollView(
+        child: Padding(padding: EdgeInsets.all(50),
+        child: Center(
+          child: Column(
+            children: [
+              CircleAvatar(radius: 50,
+              child: Icon(Icons.person,size: 70,),),
+              SizedBox(height: 10),
+              Text("Firlo Abdul Fatur",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.red,
+                fontSize: 25
+              ),
+              ),
+              
+              Text("1124160119",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.red
+              ),
+              ),
+
+              Text("Teknik Informatika",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.red
+              ),
+              ),
+            ],
+          ),
+        ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Tambah data"))
+        );
+      },
+      tooltip: "Tambah Data",
+      child: Icon(Icons.add),
+      ),
+    );
   }
 }

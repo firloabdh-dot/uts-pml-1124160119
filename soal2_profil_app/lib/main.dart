@@ -1,33 +1,54 @@
 import 'package:flutter/material.dart';
+import 'screens/login_page.dart';
+import 'screens/profile_page.dart';
+import 'screens/about_page.dart';
 
-void main(){
-  runApp(MyApp());
+void main() {
+  runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool isDarkMode = false;
+
+  void gantiTema() {
+    setState(() {
+      isDarkMode = !isDarkMode;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Profile App",
-      theme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-      useMaterial3: true),
-      darkTheme: ThemeData(colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
-      useMaterial3: true),
-      themeMode: ThemeMode.system,
+      title: "Profil Firlo",
       debugShowCheckedModeBanner: false,
-      home: MyProfileApp(),
-
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+      ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.blue,
+          brightness: Brightness.dark,
+        ),
+      ),
+      themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light,
+      initialRoute: '/login',
+      routes: {
+        '/login': (context) => const LoginPage(),
+        '/profile': (context) => ProfilePage(
+              isDarkMode: isDarkMode,
+              onThemeChanged: gantiTema,
+            ),
+        '/about': (context) => const AboutPage(),
+      },
     );
-  }
-}
-
-class MyProfileApp extends StatelessWidget {
-  const MyProfileApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
   }
 }

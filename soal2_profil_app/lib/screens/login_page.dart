@@ -9,6 +9,16 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
+  bool _isLoading = false;
+
+  void _prosesLogin() async {
+    if (_formKey.currentState!.validate()) {
+      setState(() => _isLoading = true);
+      await Future.delayed(const Duration(seconds: 1));
+      if (!mounted) return;
+      Navigator.pushReplacementNamed(context, '/profile');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,12 +65,12 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
               const SizedBox(height: 24),
-              ElevatedButton(
-                onPressed: () {
-                  _formKey.currentState!.validate();
-                },
-                child: const Text("Login"),
-              ),
+              _isLoading
+                  ? const CircularProgressIndicator()
+                  : ElevatedButton(
+                      onPressed: _prosesLogin,
+                      child: const Text("Login"),
+                    ),
             ],
           ),
         ),

@@ -16,7 +16,7 @@ Semester 5 (Ganjil) 2026/2027
 
 ## 📦 Unduhan APK Release
 File APK telah dibuat dengan perintah `flutter build apk --release` dan diunggah ke GitHub Releases.
-📥 [Download app-release.apk (v1.0.0)](#) *(Nanti ganti # dengan link rilis GitHub)*
+📥 [Download app-release.apk (v1.0.0)](#) *(https://github.com/firloabdh-dot/uts-pml-1124160119/releases/tag/v1.0.0)*
 
 ## 📸 Screenshot Aplikasi
 

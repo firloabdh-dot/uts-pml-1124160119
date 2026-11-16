@@ -12,7 +12,7 @@ Semester 5 (Ganjil) 2026/2027
 | **Repository** | uts-pml-1124160119 |
 
 ## 🎬 Link Video Presentasi YouTube
-🔗 [Tonton Video Demo & Penjelasan di YouTube](#) *(Nanti ganti # dengan link videomu)*
+🔗 [Tonton Video Demo & Penjelasan di YouTube](#) *(https://youtu.be/QJ2k8OxMAgI)*
 
 ## 📦 Unduhan APK Release
 File APK telah dibuat dengan perintah `flutter build apk --release` dan diunggah ke GitHub Releases.

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../models/profile.dart';
 import '../widgets/info_tile.dart';
 
+import 'edit_profile_page.dart' show EditProfilePage;
+
 class ProfilePage extends StatefulWidget {
   final bool isDarkMode;
   final VoidCallback onThemeChanged;
@@ -42,11 +44,18 @@ class _ProfilePageState extends State<ProfilePage> {
             icon: Icon(widget.isDarkMode ? Icons.light_mode : Icons.dark_mode),
           ),
           IconButton(
-            onPressed: () {
-              // Nanti disambungkan ke EditProfilePage di Commit 10
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text("Membuka halaman edit...")),
+            onPressed: () async {
+              final hasil = await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EditProfilePage(profile: dataProfil),
+                ),
               );
+              if (hasil != null && hasil is Profile) {
+                setState(() {
+                  dataProfil = hasil;
+                });
+              }
             },
             tooltip: "Edit Profil",
             icon: const Icon(Icons.edit),

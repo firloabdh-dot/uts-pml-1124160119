@@ -56,27 +56,52 @@ class _EditProfilePageState extends State<EditProfilePage> {
           key: _formKey,
           child: Column(
             children: [
+              // Validasi 1: Nama wajib diisi
               TextFormField(
                 controller: _namaController,
                 decoration: const InputDecoration(labelText: "Nama Lengkap"),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Nama wajib diisi!";
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 16),
+
+              // Validasi 2: Email wajib valid (@)
               TextFormField(
                 controller: _emailController,
                 decoration: const InputDecoration(labelText: "Email"),
+                validator: (value) {
+                  if (value == null || !value.contains('@')) {
+                    return "Email tidak valid (wajib mengandung @)!";
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 16),
+
+              // Validasi 3: Nomor HP wajib angka 10-13 digit
               TextFormField(
                 controller: _hpController,
                 keyboardType: TextInputType.phone,
                 decoration: const InputDecoration(labelText: "Nomor HP"),
+                validator: (value) {
+                  if (value == null || !RegExp(r'^[0-9]{10,13}$').hasMatch(value)) {
+                    return "Nomor HP hanya boleh angka 10-13 digit!";
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 16),
+
               TextFormField(
                 controller: _bioController,
                 decoration: const InputDecoration(labelText: "Bio Singkat"),
               ),
               const SizedBox(height: 24),
+
               ElevatedButton(
                 onPressed: _simpan,
                 child: const Text("Simpan"),

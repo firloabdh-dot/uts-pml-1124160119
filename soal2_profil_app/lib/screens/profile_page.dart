@@ -91,9 +91,10 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Center(
               child: Column(
                 children: [
+                  // SUDAH PAKAI FOTO DARI ASSETS
                   const CircleAvatar(
                     radius: 50,
-                    child: Icon(Icons.person, size: 50),
+                    backgroundImage: AssetImage('assets/images/WhatsApp Image 2026-11-15 at 13.07.32.jpeg'),
                   ),
                   const SizedBox(height: 16),
                   Text(

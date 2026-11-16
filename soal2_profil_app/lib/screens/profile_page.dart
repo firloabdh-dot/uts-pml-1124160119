@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/profile.dart';
 import '../widgets/info_tile.dart';
-
-import 'edit_profile_page.dart' show EditProfilePage;
+import 'edit_profile_page.dart'; 
 
 class ProfilePage extends StatefulWidget {
   final bool isDarkMode;
@@ -43,25 +42,9 @@ class _ProfilePageState extends State<ProfilePage> {
             tooltip: "Mode Gelap/Terang",
             icon: Icon(widget.isDarkMode ? Icons.light_mode : Icons.dark_mode),
           ),
-          IconButton(
-            onPressed: () async {
-              final hasil = await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => EditProfilePage(profile: dataProfil),
-                ),
-              );
-              if (hasil != null && hasil is Profile) {
-                setState(() {
-                  dataProfil = hasil;
-                });
-              }
-            },
-            tooltip: "Edit Profil",
-            icon: const Icon(Icons.edit),
-          ),
         ],
       ),
+      
       drawer: Drawer(
         child: ListView(
           children: [
@@ -100,10 +83,9 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Center(
               child: Column(
                 children: [
-                  // SUDAH PAKAI FOTO DARI ASSETS
                   const CircleAvatar(
                     radius: 50,
-                    backgroundImage: AssetImage('assets/images/WhatsApp Image 2026-11-15 at 13.07.32.jpeg'),
+                    backgroundImage: AssetImage('assets/images/WhatsApp Image 2026-11-15 at 13.07.32.jpeg'), 
                   ),
                   const SizedBox(height: 16),
                   Text(
@@ -131,20 +113,55 @@ class _ProfilePageState extends State<ProfilePage> {
                       ],
                     ),
                   ),
+                  const SizedBox(height: 80),
                 ],
               ),
             ),
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("Terima kasih telah melihat profil saya")),
+      
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () async {
+          final hasil = await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => EditProfilePage(profile: dataProfil),
+            ),
           );
+          if (hasil != null && hasil is Profile) {
+            setState(() {
+              dataProfil = hasil;
+            });
+          }
         },
-        tooltip: "Tambah",
-        child: const Icon(Icons.add),
+        icon: const Icon(Icons.edit),
+        label: const Text(
+          "Edit Profil",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: const Color(0xFFE0E7FF),
+        foregroundColor: const Color(0xFF312E81), 
+      ),
+      
+      // NAVIGASI BAWAH 
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: 0,
+        onDestinationSelected: (int index) {
+          if (index == 1) { 
+            Navigator.pushNamed(context, '/about');
+          }
+        },
+        destinations: const [
+          NavigationDestination(
+            icon: Icon(Icons.person),
+            label: 'Profil',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.info_outline),
+            label: 'About',
+          ),
+        ],
       ),
     );
   }

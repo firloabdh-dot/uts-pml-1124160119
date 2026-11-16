@@ -53,6 +53,28 @@ class AboutPage extends StatelessWidget {
           ),
         ],
       ),
+      
+      //NAVIGASI BAWAH PROFILE PAGE
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: 1,
+        onDestinationSelected: (int index) {
+          if (index == 0) { 
+            Navigator.pop(context);
+          }
+        },
+        destinations: const [
+          NavigationDestination(
+            icon: Icon(Icons.person_outline), 
+            selectedIcon: Icon(Icons.person), 
+            label: 'Profil',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.info_outline),
+            selectedIcon: Icon(Icons.info),
+            label: 'About',
+          ),
+        ],
+      ),
     );
   }
 }
